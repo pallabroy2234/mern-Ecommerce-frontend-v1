@@ -28,11 +28,13 @@ const socket = io("http://localhost:3000");
 
 function App() {
 	const dispatch = useDispatch();
-	const {userInfo} = useSelector((state) => state.auth);
+	// const {userInfo} = useSelector((state) => state.auth);
 
 	useEffect(() => {
 		dispatch(getCategories());
 	}, []);
+
+
 
 	useEffect(() => {
 		socket.on("active-seller", (allSellers) => {

@@ -56,7 +56,7 @@ const decodeToken = (token) => {
 		const userInfo = jwtDecode(token);
 		return userInfo;
 	} else {
-		return "";
+		return  ""
 	}
 };
 
@@ -71,24 +71,24 @@ export const authReducer = createSlice({
 		changePasswordErrorMessage: "",
 	},
 	reducers: {
-		messageClear: (state, _) => {
+		messageClear: (state) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 			state.changePasswordSuccessMessage = "";
 			state.changePasswordErrorMessage = "";
 		},
-		userReset: (state, _) => {
+		userReset: (state) => {
 			state.userInfo = "";
 		},
 	},
 	extraReducers: (builder) => {
 		// ! USER REGISTER
-		builder.addCase(userRegister.pending, (state, _) => {
+		builder.addCase(userRegister.pending, (state) => {
 			state.loader = true;
 		});
 		builder.addCase(userRegister.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(userRegister.fulfilled, (state, {payload}) => {
 			state.loader = false;
@@ -96,12 +96,12 @@ export const authReducer = createSlice({
 		});
 
 		//  ! USER LOGIN
-		builder.addCase(userLogin.pending, (state, _) => {
+		builder.addCase(userLogin.pending, (state) => {
 			state.loader = true;
 		});
 		builder.addCase(userLogin.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(userLogin.fulfilled, (state, {payload}) => {
 			const userInfo = decodeToken(payload.payload);
@@ -116,9 +116,9 @@ export const authReducer = createSlice({
 		});
 		builder.addCase(logout.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
-		builder.addCase(logout.pending, (state, {payload}) => {
+		builder.addCase(logout.pending, (state) => {
 			state.loader = true;
 		});
 		// 	* CHANGE PASSWORD
@@ -128,9 +128,9 @@ export const authReducer = createSlice({
 		});
 		builder.addCase(changePassword.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.changePasswordErrorMessage = payload.message;
+			state.changePasswordErrorMessage = payload?.message;
 		});
-		builder.addCase(changePassword.pending, (state, {payload}) => {
+		builder.addCase(changePassword.pending, (state) => {
 			state.loader = true;
 		});
 	},

@@ -49,7 +49,7 @@ export const orderReducer = createSlice({
 		orderId: "",
 	},
 	reducers: {
-		messageClear: (state, _) => {
+		messageClear: (state) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 		},
@@ -65,7 +65,7 @@ export const orderReducer = createSlice({
 		});
 		builder.addCase(placeOrder.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 
 		// 	* My Orders
@@ -78,7 +78,7 @@ export const orderReducer = createSlice({
 		});
 		builder.addCase(getMyOrders.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 
 		// * ORDER DETAILS
@@ -91,7 +91,7 @@ export const orderReducer = createSlice({
 		});
 		builder.addCase(getOrderDetails.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 	},
 });

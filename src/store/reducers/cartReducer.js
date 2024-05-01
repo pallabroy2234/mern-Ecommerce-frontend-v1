@@ -30,8 +30,8 @@ export const getCartProducts = createAsyncThunk("cart/getCartProducts", async (u
 	try {
 		const {data} = await api.get(`frontend/product/get-cart-products/${userId}`);
 		return fulfillWithValue(data);
-	} catch (e) {
-		return rejectWithValue(e.response.data);
+	} catch (error) {
+		return rejectWithValue(error.response.data || "");
 	}
 });
 
@@ -80,8 +80,8 @@ export const getWishList = createAsyncThunk("cart/getWishList", async (userId, {
 	try {
 		const {data} = await api.get(`frontend/product/get-wishlist/${userId}`);
 		return fulfillWithValue(data);
-	} catch (e) {
-		return rejectWithValue(e.response.data);
+	} catch (error) {
+		return rejectWithValue(error.response.data || error);
 	}
 });
 
@@ -125,7 +125,7 @@ export const cartReducer = createSlice({
 	extraReducers: (builder) => {
 		// * ADD TO CART
 		builder.addCase(addToCart.rejected, (state, {payload}) => {
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 			state.loader = false;
 		});
 		builder.addCase(addToCart.fulfilled, (state, {payload}) => {
@@ -134,14 +134,14 @@ export const cartReducer = createSlice({
 			// state.totalCartProductsCount = state.totalCartProductsCount + 1
 			state.cartProductCount = state.cartProductCount + 1;
 		});
-		builder.addCase(addToCart.pending, (state, {payload}) => {
+		builder.addCase(addToCart.pending, (state,_) => {
 			state.loader = true;
 		});
 		builder.addCase(totalCartProducts.fulfilled, (state, {payload}) => {
 			state.totalCartProductsCount = payload.payload;
 		});
 		builder.addCase(totalCartProducts.rejected, (state, {payload}) => {
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		// * GET CART PRODUCTS
 		builder.addCase(getCartProducts.fulfilled, (state, {payload}) => {
@@ -155,7 +155,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(getCartProducts.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(getCartProducts.pending, (state, _) => {
 			state.loader = true;
@@ -169,7 +169,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(deleteCartProduct.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message
 		});
 		builder.addCase(deleteCartProduct.pending, (state, _) => {
 			state.loader = true;
@@ -183,7 +183,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(quantityIncrement.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(quantityIncrement.pending, (state, _) => {
 			state.loader = true;
@@ -198,7 +198,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(quantityDecrement.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(quantityDecrement.pending, (state, _) => {
 			state.loader = true;
@@ -212,7 +212,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(addToWishlist.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(addToWishlist.pending, (state, _) => {
 			state.loader = true;
@@ -225,7 +225,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(getWishList.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message
 		});
 		builder.addCase(getWishList.pending, (state, _) => {
 			state.loader = true;
@@ -240,7 +240,7 @@ export const cartReducer = createSlice({
 		});
 		builder.addCase(removeWishlist.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(removeWishlist.pending, (state, _) => {
 			state.loader = true;

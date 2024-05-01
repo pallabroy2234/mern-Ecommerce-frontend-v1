@@ -6,8 +6,8 @@ export const getCategories = createAsyncThunk("home/getCategories", async (_, {r
 	try {
 		const {data} = await api.get("/frontend/get-categories");
 		return fulfillWithValue(data);
-	} catch (e) {
-		return rejectWithValue(e.response.data);
+	} catch (error) {
+		return rejectWithValue(error.response.data || error);
 	}
 });
 
@@ -59,8 +59,8 @@ export const getPriceRange = createAsyncThunk("home/getPriceRange", async (_, {r
 	try {
 		const {data} = await api.get("/frontend/get-priceRange");
 		return fulfillWithValue(data);
-	} catch (e) {
-		return rejectWithValue(e.response.data);
+	} catch (error) {
+		return rejectWithValue(error.response.data);
 	}
 });
 
@@ -154,7 +154,7 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getCategories.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(getCategories.pending, (state, _) => {
 			state.loading = true;
@@ -166,9 +166,9 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getFeatureProducts.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
-		builder.addCase(getFeatureProducts.pending, (state, _) => {
+		builder.addCase(getFeatureProducts.pending, (state) => {
 			state.loading = true;
 		});
 		// ! GET CAROUSEL LATEST PRODUCTS
@@ -178,7 +178,7 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getCarouselLatestProducts.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(getCarouselLatestProducts.pending, (state, _) => {
 			state.loading = true;
@@ -193,7 +193,7 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getCarouselProducts.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message
 		});
 		builder.addCase(getCarouselProducts.pending, (state, _) => {
 			state.loading = true;
@@ -205,7 +205,7 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getPriceRange.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(getPriceRange.pending, (state, _) => {
 			state.loading = true;
@@ -220,7 +220,7 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getQueryProducts.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 			state.products = [];
 			state.pagination = {};
 		});
@@ -237,7 +237,7 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getProductDetails.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 		builder.addCase(getProductDetails.pending, (state, _) => {
 			state.loading = true;
@@ -250,9 +250,9 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(submitUserReview.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.submitErrorMessage = payload.message;
+			state.submitErrorMessage = payload?.message;
 		});
-		builder.addCase(submitUserReview.pending, (state, {payload}) => {
+		builder.addCase(submitUserReview.pending, (state) => {
 			state.loading = true;
 		});
 
@@ -265,9 +265,9 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getProductReviews.rejected, (state, {payload}) => {
 			state.loading = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
-		builder.addCase(getProductReviews.pending, (state, {payload}) => {
+		builder.addCase(getProductReviews.pending, (state, _) => {
 			state.loading = true;
 		});
 
@@ -278,9 +278,9 @@ export const homeReducer = createSlice({
 		});
 		builder.addCase(getBanners.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
-		builder.addCase(getBanners.pending, (state, {payload}) => {
+		builder.addCase(getBanners.pending, (state, _) => {
 			state.loader = true;
 		});
 	},

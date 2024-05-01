@@ -22,7 +22,7 @@ export const dashboardReducer = createSlice({
 		successMessage: "",
 	},
 	reducers: {
-		messageClear: (state, _) => {
+		messageClear: (state) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 		},
@@ -41,7 +41,7 @@ export const dashboardReducer = createSlice({
 		});
 		builder.addCase(getRecentOrders.rejected, (state, {payload}) => {
 			state.loader = false;
-			state.errorMessage = payload.message;
+			state.errorMessage = payload?.message;
 		});
 	},
 });
