@@ -81,7 +81,7 @@ export const getWishList = createAsyncThunk("cart/getWishList", async (userId, {
 		const {data} = await api.get(`frontend/product/get-wishlist/${userId}`);
 		return fulfillWithValue(data);
 	} catch (error) {
-		return rejectWithValue(error.response.data || error);
+		return rejectWithValue(error.response.data);
 	}
 });
 
@@ -113,11 +113,11 @@ export const cartReducer = createSlice({
 		outOfStockProducts: [],
 	},
 	reducers: {
-		messageClear: (state, _) => {
+		messageClear: (state,) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 		},
-		resetCart: (state, _) => {
+		resetCart: (state) => {
 			state.cartProductCount = 0;
 			state.wishListCount = 0;
 		},
@@ -134,7 +134,7 @@ export const cartReducer = createSlice({
 			// state.totalCartProductsCount = state.totalCartProductsCount + 1
 			state.cartProductCount = state.cartProductCount + 1;
 		});
-		builder.addCase(addToCart.pending, (state,_) => {
+		builder.addCase(addToCart.pending, (state) => {
 			state.loader = true;
 		});
 		builder.addCase(totalCartProducts.fulfilled, (state, {payload}) => {
@@ -157,7 +157,7 @@ export const cartReducer = createSlice({
 			state.loader = false;
 			state.errorMessage = payload?.message;
 		});
-		builder.addCase(getCartProducts.pending, (state, _) => {
+		builder.addCase(getCartProducts.pending, (state) => {
 			state.loader = true;
 		});
 
@@ -171,7 +171,7 @@ export const cartReducer = createSlice({
 			state.loader = false;
 			state.errorMessage = payload?.message
 		});
-		builder.addCase(deleteCartProduct.pending, (state, _) => {
+		builder.addCase(deleteCartProduct.pending, (state) => {
 			state.loader = true;
 		});
 
@@ -185,7 +185,7 @@ export const cartReducer = createSlice({
 			state.loader = false;
 			state.errorMessage = payload?.message;
 		});
-		builder.addCase(quantityIncrement.pending, (state, _) => {
+		builder.addCase(quantityIncrement.pending, (state) => {
 			state.loader = true;
 		});
 
@@ -200,7 +200,7 @@ export const cartReducer = createSlice({
 			state.loader = false;
 			state.errorMessage = payload?.message;
 		});
-		builder.addCase(quantityDecrement.pending, (state, _) => {
+		builder.addCase(quantityDecrement.pending, (state) => {
 			state.loader = true;
 		});
 
@@ -214,20 +214,20 @@ export const cartReducer = createSlice({
 			state.loader = false;
 			state.errorMessage = payload?.message;
 		});
-		builder.addCase(addToWishlist.pending, (state, _) => {
+		builder.addCase(addToWishlist.pending, (state) => {
 			state.loader = true;
 		});
 		// 	* GET WISHLIST
 		builder.addCase(getWishList.fulfilled, (state, {payload}) => {
 			state.loader = false;
-			state.wishListProducts = payload.payload.wishList;
+			state.wishListProducts = payload?.payload?.wishList;
 			state.wishListCount = payload.payload.wishListCount;
 		});
 		builder.addCase(getWishList.rejected, (state, {payload}) => {
 			state.loader = false;
 			state.errorMessage = payload?.message
 		});
-		builder.addCase(getWishList.pending, (state, _) => {
+		builder.addCase(getWishList.pending, (state) => {
 			state.loader = true;
 		});
 
@@ -236,13 +236,13 @@ export const cartReducer = createSlice({
 			state.loader = false;
 			state.successMessage = payload.message;
 			state.wishListCount = state.wishListCount - 1;
-			state.wishListProducts = state.wishListProducts.filter((item) => item._id !== payload.payload.removeWishListId);
+			state.wishListProducts = state.wishListProducts.filter((item) => item?._id !== payload.payload?.removeWishListId);
 		});
 		builder.addCase(removeWishlist.rejected, (state, {payload}) => {
 			state.loader = false;
 			state.errorMessage = payload?.message;
 		});
-		builder.addCase(removeWishlist.pending, (state, _) => {
+		builder.addCase(removeWishlist.pending, (state) => {
 			state.loader = true;
 		});
 	},

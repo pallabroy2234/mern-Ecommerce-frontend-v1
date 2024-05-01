@@ -71,7 +71,7 @@ export const authReducer = createSlice({
 		changePasswordErrorMessage: "",
 	},
 	reducers: {
-		messageClear: (state) => {
+		messageClear: (state, _) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 			state.changePasswordSuccessMessage = "";

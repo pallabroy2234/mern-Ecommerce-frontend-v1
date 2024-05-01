@@ -49,7 +49,7 @@ export const orderReducer = createSlice({
 		orderId: "",
 	},
 	reducers: {
-		messageClear: (state) => {
+		messageClear: (state,_) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 		},

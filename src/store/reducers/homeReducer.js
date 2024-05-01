@@ -139,7 +139,7 @@ export const homeReducer = createSlice({
 		banners: [],
 	},
 	reducers: {
-		messageClear: (state) => {
+		messageClear: (state,_) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 			state.submitSuccessMessage = "";

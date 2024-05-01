@@ -22,7 +22,7 @@ export const dashboardReducer = createSlice({
 		successMessage: "",
 	},
 	reducers: {
-		messageClear: (state) => {
+		messageClear: (state, _) => {
 			state.successMessage = "";
 			state.errorMessage = "";
 		},

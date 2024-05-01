@@ -1,24 +1,43 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {AiFillHeart, AiOutlineShoppingCart} from "react-icons/ai";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FaEye} from "react-icons/fa";
 import Rattings from "../Rattings.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {getWishList, messageClear, removeWishlist} from "../../store/reducers/cartReducer.js";
-import Login from "../../pages/Login.jsx";
+import {addToCart, getWishList, messageClear, removeWishlist} from "../../store/reducers/cartReducer.js";
+
 import toast from "react-hot-toast";
 import {FadeLoader} from "react-spinners";
 
 const Wishlist = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const {userInfo} = useSelector((state) => state.auth);
-	const {wishListProducts, wishListCount, errorMessage, successMessage, loader} = useSelector((state) => state.cart);
+	const {wishListProducts, errorMessage, successMessage, loader} = useSelector((state) => state.cart);
 	const [activeWishlistItems, setActiveWishlistItems] = useState([]);
+
 	useEffect(() => {
 		if (userInfo) {
 			dispatch(getWishList(userInfo.id));
 		}
 	}, []);
+
+
+
+	const handleAddToCart = (id) => {
+		if (userInfo) {
+			dispatch(
+				addToCart({
+					userId: userInfo.id,
+					quantity: 1,
+					productId: id,
+				}),
+			);
+		} else {
+			navigate("/login");
+		}
+	};
+
 
 	useEffect(() => {
 		if (wishListProducts) {
@@ -36,11 +55,13 @@ const Wishlist = () => {
 			toast.error(errorMessage);
 			dispatch(messageClear());
 		}
-	}, [successMessage, messageClear]);
+	}, [successMessage, errorMessage]);
 
 	const handleRemoveWishlist = (wishlistId) => {
 		dispatch(removeWishlist(wishlistId));
 	};
+
+
 
 	const truncateName = (name) => {
 		if (name.length > 40) {
@@ -71,12 +92,12 @@ const Wishlist = () => {
 									className={`${activeWishlistItems.includes(item?.productId) ? "bg-dark-moderate-green text-white" : "bg-white text-black"} w-[38px] h-[38px] cursor-pointer  flex justify-center items-center rounded-full hover:bg-dark-moderate-green hover:text-white  transition-all duration-200`}>
 									<AiFillHeart />
 								</li>
-								<Link to={`/product/details/${item?._id}`} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-dark-moderate-green hover:text-white hover:rotate-[720deg] transition-all duration-200'>
+								<Link to={`/product/details/${item?.slug}`} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-dark-moderate-green hover:text-white hover:rotate-[720deg] transition-all duration-200'>
 									<FaEye />
 								</Link>
-								<li className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-dark-moderate-green hover:text-white hover:rotate-[720deg] transition-all duration-200'>
+								<button onClick={() => handleAddToCart(item?.productId)}  type="button"  className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-dark-moderate-green hover:text-white hover:rotate-[720deg] transition-all duration-200'>
 									<AiOutlineShoppingCart />
-								</li>
+								</button>
 							</ul>
 							<div className='z-40 absolute w-full h-full top-0 bottom-0 left-0 right-0 bg-black  opacity-0 group-hover:opacity-20 transition-all'></div>
 						</div>

@@ -35,7 +35,7 @@ export const chatReducer = createSlice({
         activeSeller: [],
     },
     reducers: {
-        messageClear: (state) => {
+        messageClear: (state, _) => {
             state.successMessage = "";
             state.errorMessage = "";
         },
