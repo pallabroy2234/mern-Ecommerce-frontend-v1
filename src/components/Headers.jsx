@@ -120,7 +120,7 @@ const Headers = () => {
 						<div className='w-3/12 md-lg:w-full md-lg:pt-4'>
 							<div className='flex items-center justify-between'>
 								<Link to='/'>
-									<img src={"../../public/images/logo.png"} alt='logo' />
+									<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/logo.png"} alt='logo' />
 								</Link>
 								<div onClick={() => setShowSideBar(false)} className='justify-center items-center w-[30px] h-[30px] bg-white text-slate-600 border border-slate-600 rounded-sm cursor-pointer md-lg:flex lg:hidden xl:hidden 2xl:hidden 3xl:hidden '>
 									<span>
