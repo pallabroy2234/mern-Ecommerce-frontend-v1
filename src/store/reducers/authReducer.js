@@ -17,7 +17,7 @@ export const userRegister = createAsyncThunk("auth/userRegister", async (info, {
 //  ! USER LOGIN
 export const userLogin = createAsyncThunk("auth/userLogin", async (info, {rejectWithValue, fulfillWithValue}) => {
 	try {
-		const {data} = await api.post("frontend/user/user-login", info);
+		const {data} = await api.post("frontend/user/user-login", info, {withCredentials: true});
 		localStorage.setItem("userAuthorization", data.payload);
 		return fulfillWithValue(data);
 	} catch (e) {
@@ -38,7 +38,10 @@ export const logout = createAsyncThunk("auth/logout", async (_, {rejectWithValue
 
 // * CHANGE PASSWORD || POST || /api/frontend/user/change-password
 
-export const changePassword = createAsyncThunk("auth/changePassword", async (info, {rejectWithValue, fulfillWithValue}) => {
+export const changePassword = createAsyncThunk("auth/changePassword", async (info, {
+	rejectWithValue,
+	fulfillWithValue
+}) => {
 	try {
 		const {data} = await api.post("frontend/user/change-password", info);
 		console.log(data);
@@ -56,7 +59,7 @@ const decodeToken = (token) => {
 		const userInfo = jwtDecode(token);
 		return userInfo;
 	} else {
-		return  ""
+		return "";
 	}
 };
 
@@ -68,7 +71,7 @@ export const authReducer = createSlice({
 		successMessage: "",
 		errorMessage: "",
 		changePasswordSuccessMessage: "",
-		changePasswordErrorMessage: "",
+		changePasswordErrorMessage: ""
 	},
 	reducers: {
 		messageClear: (state, _) => {
@@ -79,7 +82,7 @@ export const authReducer = createSlice({
 		},
 		userReset: (state) => {
 			state.userInfo = "";
-		},
+		}
 	},
 	extraReducers: (builder) => {
 		// ! USER REGISTER
@@ -94,7 +97,7 @@ export const authReducer = createSlice({
 			state.loader = false;
 			state.successMessage = payload.message;
 		});
-
+		
 		//  ! USER LOGIN
 		builder.addCase(userLogin.pending, (state) => {
 			state.loader = true;
@@ -133,7 +136,7 @@ export const authReducer = createSlice({
 		builder.addCase(changePassword.pending, (state) => {
 			state.loader = true;
 		});
-	},
+	}
 });
 
 export const {messageClear, userReset} = authReducer.actions;
