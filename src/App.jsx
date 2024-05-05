@@ -24,7 +24,7 @@ import io from "socket.io-client";
 import {updateSeller} from "./store/reducers/chatReducer.js";
 import ConfirmOrder from "./pages/ConfirmOrder.jsx";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://mern-ecommerce-backend-v1-w1ps.onrender.com");
 
 function App() {
 	const dispatch = useDispatch();
