@@ -10,7 +10,7 @@ const productionUrl = "https://mern-ecommerce-backend-v1-w1ps.onrender.com"; // 
 const mode = "production"; // Change this to "production" when deploying
 
 // Select the appropriate API URL based on the mode
-const apiBaseUrl = mode === "development" ? developmentUrl : productionUrl;
+const apiBaseUrl = mode === "production" ? productionUrl : developmentUrl;
 
 // Create an Axios instance with the selected base URL
 const api = axios.create({
