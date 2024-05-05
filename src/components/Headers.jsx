@@ -189,11 +189,11 @@ const Headers = () => {
 				<div className={`w-[300px] z-[99999] transition-all duration-300 fixed  ${showSideBar ? "-left-[300px]" : "left-0"} top-0 overflow-y-auto bg-white h-screen py-6 px-8`}>
 					<div className='flex flex-col justify-start gap-6'>
 						<Link to='/' className='w-[170px] h-[70px] flex justify-center items-center'>
-							<img src={"../../public/images/logo.png"} className='object-contain w-full h-full' alt='logo' />
+							<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/logo.png"} className='object-contain w-full h-full' alt='logo' />
 						</Link>
 						<div className='flex items-center justify-start gap-6'>
 							<div className='flex cursor-pointer text-slate-800 text-sm relative  justify-center items-center gap-1 border-r-[1.5px] border-[#afafaf] pr-5' onClick={() => setShowLanguage(!showLanguage)}>
-								<img src={"../../public/images/language.png"} alt='' />
+								<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/language.png"} alt='' />
 								<span>
 									<MdOutlineKeyboardArrowDown />
 								</span>
@@ -203,12 +203,12 @@ const Headers = () => {
 								</ul>
 							</div>
 							{userInfo ? (
-								<div className='flex items-center justify-center gap-2 text-sm cursor-pointer' to='#'>
+								<Link to={"/dashboard"} className='flex items-center justify-center gap-2 text-sm cursor-pointer'>
 									<span>
 										<FaUser />
 									</span>
 									<span className='text-sm text-nowrap text-ellipsis'>{userInfo?.name}</span>
-								</div>
+								</Link>
 							) : (
 								<Link to='/login' className='flex items-center justify-center gap-2 text-sm cursor-pointer'>
 									<span>
