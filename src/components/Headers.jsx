@@ -83,7 +83,7 @@ const Headers = () => {
 									</a>
 								</div>
 								<div className='flex cursor-pointer text-slate-800 text-sm relative  justify-center items-center gap-1 border-x-[1.5px] border-[#afafaf] px-5' onClick={() => setShowLanguage(!showLanguage)}>
-									<img src={"http://localhost:5174/images/language.png"} alt='' />
+									<img src={"https://mern-ecommerce-frontend-v1-hxjxp57bl.vercel.app/images/language.png"} alt='' />
 									<span>
 										<MdOutlineKeyboardArrowDown />
 									</span>
@@ -120,7 +120,7 @@ const Headers = () => {
 						<div className='md-lg:w-full w-3/12 md-lg:pt-4'>
 							<div className='flex justify-between items-center'>
 								<Link to='/'>
-									<img src={"http://localhost:5174/images/logo.png"} alt='logo' />
+									<img src={"https://mern-ecommerce-frontend-v1-hxjxp57bl.vercel.app/images/logo.png"} alt='logo' />
 								</Link>
 								<div onClick={() => setShowSideBar(false)} className='justify-center items-center w-[30px] h-[30px] bg-white text-slate-600 border border-slate-600 rounded-sm cursor-pointer md-lg:flex lg:hidden xl:hidden 2xl:hidden 3xl:hidden '>
 									<span>
@@ -189,11 +189,11 @@ const Headers = () => {
 				<div className={`w-[300px] z-[99999] transition-all duration-300 fixed  ${showSideBar ? "-left-[300px]" : "left-0"} top-0 overflow-y-auto bg-white h-screen py-6 px-8`}>
 					<div className='flex justify-start flex-col gap-6'>
 						<Link to='/' className='w-[170px] h-[70px] flex justify-center items-center'>
-							<img src={"http://localhost:5174/images/logo.png"} className='w-full h-full object-contain' alt='logo' />
+							<img src={"https://mern-ecommerce-frontend-v1-hxjxp57bl.vercel.app/images/logo.png"} className='w-full h-full object-contain' alt='logo' />
 						</Link>
 						<div className='flex justify-start items-center gap-6'>
 							<div className='flex cursor-pointer text-slate-800 text-sm relative  justify-center items-center gap-1 border-r-[1.5px] border-[#afafaf] pr-5' onClick={() => setShowLanguage(!showLanguage)}>
-								<img src={"http://localhost:5174/images/language.png"} alt='' />
+								<img src={"https://mern-ecommerce-frontend-v1-hxjxp57bl.vercel.app/images/language.png"} alt='' />
 								<span>
 									<MdOutlineKeyboardArrowDown />
 								</span>

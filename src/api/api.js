@@ -16,7 +16,7 @@ const apiBaseUrl = mode === "production" ? productionUrl : developmentUrl;
 // Create an Axios instance with the selected base URL
 const api = axios.create({
 	baseURL: `${apiBaseUrl}/api/`,
-	withCredentials: true,
+	withCredentials: true
 });
 
 export default api;
