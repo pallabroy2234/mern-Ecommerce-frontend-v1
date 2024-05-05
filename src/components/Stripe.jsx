@@ -20,7 +20,7 @@ const Stripe = ({price, orderId}) => {
 	const handleCreatePayment = async () => {
 		try {
 			const {data} = await axios.post(
-				"http://localhost:3000/api/frontend/product/order/create-payment",
+				"http://https://mern-ecommerce-backend-v1-w1ps.onrender.com/api/frontend/product/order/create-payment",
 				{
 					price,
 				},

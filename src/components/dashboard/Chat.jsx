@@ -9,7 +9,7 @@ import {addFriend, messageClear, sendMessageSeller, updateMessage} from "../../s
 import toast from "react-hot-toast";
 import {FaList} from "react-icons/fa";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://mern-ecommerce-backend-v1-w1ps.onrender.com");
 const Chat = () => {
 	const dispatch = useDispatch();
 	const {sellerId} = useParams();

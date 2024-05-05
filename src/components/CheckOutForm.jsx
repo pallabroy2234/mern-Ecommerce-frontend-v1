@@ -22,7 +22,7 @@ const CheckOutForm = ({orderId}) => {
 		const {error} = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				return_url: "http://localhost:5174/order/confirm",
+				return_url: "http://mern-ecommerce-frontend-v1.vercel.app/order/confirm",
 			},
 		});
 
