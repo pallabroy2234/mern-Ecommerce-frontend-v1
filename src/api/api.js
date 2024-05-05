@@ -16,10 +16,6 @@ const apiBaseUrl = mode === "development" ? developmentUrl : productionUrl;
 const api = axios.create({
 	baseURL: `${apiBaseUrl}/api/`,
 	withCredentials: true,
-	headers: {
-		"Content-Type": "application/json",
-		
-	},
 });
 
 export default api;
