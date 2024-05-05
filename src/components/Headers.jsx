@@ -225,12 +225,12 @@ const Headers = () => {
 								</Link>
 							</li>
 							<li>
-								<Link to={"/"} className={`py-2 block ${pathname === "/shop" ? "text-dark-moderate-green" : "text-slate-600"}`}>
+								<Link to={"/shop"} className={`py-2 block ${pathname === "/shop" ? "text-dark-moderate-green" : "text-slate-600"}`}>
 									Shop
 								</Link>
 							</li>
 							<li>
-								<Link to={"/"} className={`py-2 block ${pathname === "/block" ? "text-dark-moderate-green" : "text-slate-600"}`}>
+								<Link to={"#"} className={`py-2 block ${pathname === "/block" ? "text-dark-moderate-green" : "text-slate-600"}`}>
 									Blog
 								</Link>
 							</li>
