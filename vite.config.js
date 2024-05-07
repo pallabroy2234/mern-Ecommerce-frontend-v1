@@ -7,5 +7,6 @@ export default defineConfig({
 	server: {
 		port: 5173, // Set the desired port number
 		host: "0.0.0.0", // Bind to all network interfaces
+		cors: true,
 	},
 });
