@@ -24,7 +24,12 @@ const Stripe = ({price, orderId}) => {
 				{
 					price,
 				},
-				{withCredentials: true},
+				{
+					withCredentials: true,
+					headers: {
+						"Access-Control-Allow-Origin": "*", // Required for CORS support to work
+					},
+				},
 			);
 			setClientSecret(data.payload);
 		} catch (e) {
