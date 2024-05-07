@@ -3,10 +3,6 @@ import Headers from "../components/Headers.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
 import Stripe from "../components/Stripe.jsx";
-const bkash = "../assets/payment/bkash.png";
-const nogod = "../assets/payment/nogod.png";
-const rocket = "../assets/payment/rocket.png";
-const stripe = "../assets/payment/stripe.png";
 
 const Payment = () => {
 	const navigate = useNavigate();
@@ -30,7 +26,7 @@ const Payment = () => {
 									<div onClick={() => setPaymentMethod("stripe")} className={`w-[20%]  mb-3 border border-r cursor-pointer py-8 px-12 ${paymentMethod === "stripe" ? "bg-white" : "bg-slate-100"}`}>
 										<div className='flex flex-col gap-[3px] justify-center items-center'>
 											<div className='w-[40px] h-[40px]'>
-												<img src={stripe} className='object-cover w-full h-full' alt={"stripe"} />
+												<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/payment/stripe.png"} className='object-cover w-full h-full' alt={"stripe"} />
 											</div>
 											<span className='text-slate-600'>Stripe</span>
 										</div>
@@ -39,7 +35,7 @@ const Payment = () => {
 									<div onClick={() => setPaymentMethod("bkash")} className={`w-[20%]  mb-3 border border-r cursor-pointer py-8 px-12 ${paymentMethod === "bkash" ? "bg-white" : "bg-slate-100"}`}>
 										<div className='flex flex-col gap-[3px] justify-center items-center'>
 											<div className='w-[40px] h-[40px]'>
-												<img src={bkash} className='object-cover w-full h-full' alt={"bkash"} />
+												<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/payment/bkash.png"} className='object-cover w-full h-full' alt={"bkash"} />
 											</div>
 											<span className='text-slate-600'>Bkash</span>
 										</div>
@@ -49,7 +45,7 @@ const Payment = () => {
 										<div className='flex flex-col gap-[3px] justify-center items-center'>
 											<div className=''>
 												<div className='w-[40px] h-[40px]'>
-													<img src={nogod} className='object-cover w-full h-full' alt={"nagad"} />
+													<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/payment/nogod.png"} className='object-cover w-full h-full' alt={"nagad"} />
 												</div>
 											</div>
 											<span className='text-slate-600'>Nogod</span>
@@ -59,7 +55,7 @@ const Payment = () => {
 									<div onClick={() => setPaymentMethod("rocket")} className={`w-[20%]  mb-3 border border-r cursor-pointer py-8 px-12 ${paymentMethod === "rocket" ? "bg-white" : "bg-slate-100"}`}>
 										<div className='flex flex-col gap-[3px] justify-center items-center'>
 											<div className='w-[40px] h-[40px]'>
-												<img src={rocket} className='object-cover w-full h-full' alt={"rocket"} />
+												<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/payment/rocket.png"} className='object-cover w-full h-full' alt={"rocket"} />
 											</div>
 											<span className='text-slate-600'>Rocket</span>
 										</div>
