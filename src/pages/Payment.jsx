@@ -8,8 +8,6 @@ const nogod = "../assets/payment/nogod.png";
 const rocket = "../assets/payment/rocket.png";
 const stripe = "../assets/payment/stripe.png";
 
-import Payment from "./Payment";
-
 const Payment = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
