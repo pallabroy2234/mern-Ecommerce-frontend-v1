@@ -52,7 +52,7 @@ const ConfirmOrder = () => {
 	const handleConfirmPayment = async () => {
 		try {
 			const orderId = localStorage.getItem("orderId");
-			await axios.get(`http://localhost:3000/api/frontend/product/order/confirm-payment/${orderId}`, {withCredentials: true});
+			await axios.get(`https://mern-ecommerce-backend-v1-w1ps.onrender.com/api/frontend/product/order/confirm-payment/${orderId}`, {withCredentials: true});
 			localStorage.removeItem("orderId");
 			setLoader(false);
 		} catch (e) {
@@ -68,11 +68,11 @@ const ConfirmOrder = () => {
 	}, [message]);
 
 	return (
-		<div className='w-screen h-screen flex justify-center items-center flex-col gap-4'>
+		<div className='flex flex-col items-center justify-center w-screen h-screen gap-4'>
 			{message === "failed" || message === "processing" ? (
-				<div className='flex flex-col justify-center items-center'>
-					<img src={"./public/images/error.png"} alt='error' />
-					<Link to={"/dashboard/orders"} className='px-5 py-2 bg-green-500 rounded-sm text-white mt-4'>
+				<div className='flex flex-col items-center justify-center'>
+					<img src={"https://mern-ecommerce-backend-v1-w1ps.onrender.com/images/error.png"} alt='error' />
+					<Link to={"/dashboard/orders"} className='px-5 py-2 mt-4 text-white bg-green-500 rounded-sm'>
 						Back to Dashboard
 					</Link>
 				</div>
@@ -80,9 +80,9 @@ const ConfirmOrder = () => {
 				loader ? (
 					<FadeLoader />
 				) : (
-					<div className='flex flex-col justify-center items-center'>
-						<img src={"../public/images/success.png"} alt='success' />
-						<Link to={"/dashboard/orders"} className='px-5  py-2 bg-green-500 rounded-sm text-white mt-4'>
+					<div className='flex flex-col items-center justify-center'>
+						<img src={"https://mern-ecommerce-backend-v1-w1ps.onrender.com/images/success.png"} alt='success' />
+						<Link to={"/dashboard/orders"} className='px-5 py-2 mt-4 text-white bg-green-500 rounded-sm'>
 							Back to Dashboard
 						</Link>
 					</div>
