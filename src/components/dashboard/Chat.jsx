@@ -8,8 +8,10 @@ import io from "socket.io-client";
 import {addFriend, messageClear, sendMessageSeller, updateMessage} from "../../store/reducers/chatReducer.js";
 import toast from "react-hot-toast";
 import {FaList} from "react-icons/fa";
+import {baseUrl} from "../../api/api.js";
 
-const socket = io("https://mern-ecommerce-backend-v1-w1ps.onrender.com");
+const socket = io(baseUrl);
+
 const Chat = () => {
 	const dispatch = useDispatch();
 	const {sellerId} = useParams();
@@ -87,8 +89,8 @@ const Chat = () => {
 	}, [successMessage]);
 
 	return (
-		<div className='bg-white p-3 rounded-md'>
-			<div className='w-full flex relative'>
+		<div className='p-3 bg-white rounded-md'>
+			<div className='relative flex w-full'>
 				<div className={`${show ? "-left-2 shadow-lg bottom-0 " : "-left-[350px]"} w-[230px] md-lg:absolute z-[999] md-lg:bg-white md-lg:h-full transition-all duration-300`}>
 					<div className='flex justify-start pl-1 gap-3 items-center text-slate-600 text-xl h-[50px]'>
 						<span>
@@ -101,7 +103,7 @@ const Chat = () => {
 							myFriends.map((item, index) => (
 								<Link key={index} to={`/dashboard/chat/${item?.friendId}`} className={`flex gap-2 relative justify-start items-center pl-2 py-[8px] border border-cyan-500 rounded-md hover:mr-4  transition-all duration-300 ${item.friendId === sellerId ? "mr-4" : "mr-0"} `}>
 									<div className='w-[40px] h-[40px] rounded-full relative overflow-hidden ring-2 ring-cyan-500 ring-offset-2'>
-										<img className='w-full h-full object-cover' src={item?.image} alt={item?.sellerName} />
+										<img className='object-cover w-full h-full' src={item?.image} alt={item?.sellerName} />
 									</div>
 									{activeSeller.some((seller) => seller.sellerId === item.friendId) && <div className='w-[10px] h-[10px] rounded-full bg-green-500 absolute bottom-2 left-[38px] z-20'></div>}
 									<span className='text-nowrap text-ellipsis'>{item?.sellerName}</span>
@@ -114,9 +116,9 @@ const Chat = () => {
 					{currentFriend ? (
 						<div className='w-full h-full'>
 							<div className='flex relative justify-between items-center text-slate-600 text-xl h-[60px]'>
-								<div className='flex justify-between items-center gap-3'>
+								<div className='flex items-center justify-between gap-3'>
 									<div className='w-[40px] h-[40px] rounded-full relative overflow-hidden ring-2 ring-offset-2 ring-cyan-500'>
-										<img className='w-full h-full object-cover' src={currentFriend?.image} alt='' />
+										<img className='object-cover w-full h-full' src={currentFriend?.image} alt='' />
 									</div>
 									{activeSeller.some((seller) => seller.sellerId === currentFriend.friendId) && <div className='w-[10px] h-[10px] rounded-full bg-green-500 absolute bottom-2 left-[32px] z-20'></div>}
 									<span className='text-base'>{currentFriend?.sellerName}</span>
@@ -126,7 +128,7 @@ const Chat = () => {
 								</button>
 							</div>
 							<div className='h-[400px] w-full bg-slate-100 p-3 rounded-md overflow-y-auto'>
-								<div className='h-full w-full flex  flex-col gap-5'>
+								<div className='flex flex-col w-full h-full gap-5'>
 									{/* seller message */}
 									{friendMessages.map((item, index) => {
 										// * True but return false
@@ -144,7 +146,7 @@ const Chat = () => {
 										if (sellerId === item.receiverId) {
 											return (
 												<div key={index} ref={lastMessageRef} className='w-full flex gap-2 justify-end items-center text-[14px]'>
-													<div className='p-2 bg-blue-500 text-white rounded-md'>
+													<div className='p-2 text-white bg-blue-500 rounded-md'>
 														<span>{item?.message}</span>
 													</div>
 													<img className='w[30px] h-[30px] rounded-full' src={"../../public/images/user.png"} alt='' />
@@ -154,7 +156,7 @@ const Chat = () => {
 									})}
 								</div>
 							</div>
-							<form onSubmit={(e) => handleSubmit(e)} className='flex p-2 justify-between items-center w-full'>
+							<form onSubmit={(e) => handleSubmit(e)} className='flex items-center justify-between w-full p-2'>
 								<div className='w-[40px] h-[40px] border p-2 justify-center items-center flex rounded-full'>
 									<label htmlFor='' className='cursor-pointer'>
 										<AiOutlinePlus />
@@ -162,8 +164,8 @@ const Chat = () => {
 									<input type='file' className='hidden' />
 								</div>
 								<div className='border h-[40px] p-0 ml-2 w-[calc(100%-90px)] rounded-full relative'>
-									<input onChange={(e) => setText(e.target.value)} value={text} type='text' placeholder='Enter Message' className='w-full rounded-full h-full outline-none p-3' />
-									<div className='text-2xl right-2 top-2 absolute cursor-pointer'>
+									<input onChange={(e) => setText(e.target.value)} value={text} type='text' placeholder='Enter Message' className='w-full h-full p-3 rounded-full outline-none' />
+									<div className='absolute text-2xl cursor-pointer right-2 top-2'>
 										<span>
 											<GrEmoji />
 										</span>
