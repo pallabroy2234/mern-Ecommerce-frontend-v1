@@ -71,7 +71,7 @@ const ConfirmOrder = () => {
 		<div className='flex flex-col items-center justify-center w-screen h-screen gap-4'>
 			{message === "failed" || message === "processing" ? (
 				<div className='flex flex-col items-center justify-center'>
-					<img src={"./public/images/error.png"} alt='error' />
+					<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/error.png"} alt='error' />
 					<Link to={"/dashboard/orders"} className='px-5 py-2 mt-4 text-white bg-green-500 rounded-sm'>
 						Back to Dashboard
 					</Link>
@@ -81,7 +81,7 @@ const ConfirmOrder = () => {
 					<FadeLoader />
 				) : (
 					<div className='flex flex-col items-center justify-center'>
-						<img src={"../public/images/success.png"} alt='success' />
+						<img src={"https://mern-ecommerce-frontend-v1.onrender.com/images/success.png"} alt='success' />
 						<Link to={"/dashboard/orders"} className='px-5 py-2 mt-4 text-white bg-green-500 rounded-sm'>
 							Back to Dashboard
 						</Link>
