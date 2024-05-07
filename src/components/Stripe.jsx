@@ -20,15 +20,12 @@ const Stripe = ({price, orderId}) => {
 	const handleCreatePayment = async () => {
 		try {
 			const {data} = await axios.post(
-				"https://mern-ecommerce-frontend-v1-hxjxp57bl.vercel.app/api/frontend/product/order/create-payment",
+				"https://mern-ecommerce-frontend-v1.onrender.com/api/frontend/product/order/create-payment",
 				{
 					price,
 				},
 				{
 					withCredentials: true,
-					headers: {
-						"Access-Control-Allow-Origin": "*", // Required for CORS support to work
-					},
 				},
 			);
 			setClientSecret(data.payload);
